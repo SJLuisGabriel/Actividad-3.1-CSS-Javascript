@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+		$(document).ready(function() {
+			function validateEmailAddress(email) {
+				var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+				return re.test(email);
+			}
+
+			function validate(event) {
+				event.preventDefault(); // evita la recarga de página
+				$("#result").text("");
+				var emailaddress = $("#email").val();
+				if (validateEmailAddress(emailaddress)) {
+					$("#result").text(emailaddress + " es válido :)");
+					$("#result").css("color", "green");
+				} else {
+					$("#result").text(emailaddress + " no es correcto, por favor inténtalo de nuevo :(");
+					$("#result").css("color", "red");
+				}
+			}
+
+			$("#validate").click(validate);
+		});
+	</script>
+
+	<meta charset="UTF-8">
+	<title>Mi proyecto</title>
+	<link rel="stylesheet" href="style.css">
+
+	<script>
+		$(document).ready(function() {
+			$("p").click(function() {
+				$(".bloque-a-eliminar").remove();
+			});
+		});
+	</script>
+</head>
+<body>
+    <form>
+		<p>Ingresa una dirección de correo electrónico:</p>
+		<input type="email" id="email" name="email">
+		<button type="submit" id="validate">¡Validar!</button>
+	</form>
+	<h2 id="result"></h2>
+
+	<hr><hr>
+	
+    <p>Este es un párrafo que se puede hacer clic para eliminar un bloque:</p>
+    <div class="bloque-a-eliminar">
+        <p>Este es un bloque que se eliminará cuando se haga clic en este párrafo.</p>
+        
+    </div>
+
+	
+</body>
+</html>
